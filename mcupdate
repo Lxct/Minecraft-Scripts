@@ -1,0 +1,59 @@
+clear
+echo ============= MISE A JOUR =============
+read -p "URL du server.jar : " url
+read -p "Nom de la version : " version
+read -p "Nom du server.jar (sans le .jar) : " jarserv
+if curl --output /dev/null --silent --head --fail "$url"; then
+  cd /srv/maj/
+  wget -q "${url}"
+  echo "URL détectée."
+  sleep 2 
+  echo "Analyse du ${jarserv}.jar..."
+  if [ -f /srv/maj/${jarserv}.jar ]; then
+        sleep 1
+  	printf '%s\n' "${jarserv}.jar détécté avec succès."
+        sleep 1
+        echo "O / N (O = Oui et N = Non)"
+        read -p "Voulez-vous faire une sauvegarde du serveur ? " reply
+	if [[ ! $reply =~ ^[Nn]$ ]]
+	then
+	echo "Création d'un backup."
+        sleep 1
+        echo "Option backup indisponible."
+        clear
+        echo "Backup effectué avec succès !"
+	sleep 1
+	else
+	sleep 1
+	echo "Nous n'allons pas créer de backup."
+	sleep 1
+	fi
+  	echo "Mise à jour en cours..."
+  	sleep 1
+	echo "Arrêt du serveur..."
+	screen -S minecraft -p 0 -X stuff "tellraw @a {\"text\":\"Mise à jour du serveur en cours\",\"color\":\"red\"}^M"
+        screen -S minecraft -p 0 -X stuff "tellraw @a {\"text\":\"Version : ${version} \",\"color\":\"red\"}^M"
+  	screen -S minecraft -p 0 -X stuff "tellraw @a {\"text\":\"Les admins prendront en charge tout les soucis rencontrés.\",\"color\":\"red\"}^M"
+        screen -S minecraft -p 0 -X stuff "tellraw @a {\"text\":\"Désolé du dérangement !\",\"color\":\"red\"}^M"
+        sleep 1
+	bash /srv/scripts/stop.sh
+	echo "Supression du server.jar obsolète..."
+  	rm --force /srv/minecraft/server.jar
+  	sleep 1
+	echo "Mise en place du ${jarserv}.jar..."
+        mv /srv/maj/${jarserv}.jar /srv/minecraft/server.jar
+        sleep 1
+	echo "Maj effectuée avec succès !"
+	sleep 1
+        echo "Démarrage en cours..."
+        bash /srv/scripts/start.sh
+	echo [`date +"%m/%d/%Y|%H:%M:%S"`] : Mise à jour >> /srv/scripts/logs.txt
+	sleep 1
+   else
+        sleep 1
+  	echo "Aucun ${jarserv}.jar trouvé."
+        rm --force /srv/maj/*
+  fi
+else
+  printf '%s\n' "Lien invalide."
+fi

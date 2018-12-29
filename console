@@ -1,0 +1,53 @@
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "10 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "9 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "8 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "7 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "6 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "5 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "4 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "3 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "2 sec"
+sleep 1
+clear
+echo "Vous allez rentrer dans la console ..."
+echo "Pour quitter la console faites CTRL + A + D"
+echo "1 sec"
+sleep 1
+clear
+screen -x minecraft
+sleep 1
