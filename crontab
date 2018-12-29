@@ -1,0 +1,7 @@
+#min hour day Month Day_Of_Week Command
+0    5    *   *     *          bash /srv/scripts/update.sh
+10   4    *   *     *         bash /srv/scripts/reboot.sh
+10   13   *   *     *         bash /srv/scripts/restart.sh
+*    *    *   *     *         bash /srv/scripts/security.sh
+@reboot bash /srv/scripts/start.sh
+
